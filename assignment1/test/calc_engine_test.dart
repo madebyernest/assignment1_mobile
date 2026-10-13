@@ -22,6 +22,8 @@ void main() {
   test('2 + 3 shows 3 (second operand)', () => expect(run('2+3').display, '3'));
   test('2 + 3 × shows running total 5', () => expect(run('2+3×').display, '5'));
   test('2 + 3 × 4 = is 20 (left to right)', () => expect(run('2+3×4=').display, '20'));
+  test('overflow -> error', () =>
+    expect(run('999999999999×999999999999=').hasError, isTrue));
   test('9 + × 2 = replaces operator -> 18', () => expect(run('9+×2=').display, '18'));
   test('7 + = ignores equals, keeps pending op', () {
     final c = run('7+=');
